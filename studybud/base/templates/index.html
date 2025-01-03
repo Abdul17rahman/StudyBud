@@ -3,4 +3,32 @@
 {% block content %}
 <h1>Welcome to study buddy</h1>
 
+<a href="{% url 'create-room' %}">Create Room</a>
+
+<hr>
+
+<div class="container">
+  <div class="aside">
+    <p><a href="{% url 'index' %}">All</a></p>
+    {% for topic in topics %}
+    <p>
+      <a href="{% url 'index' %}?q={{ topic.name }}">
+        {{ topic.name }}</a>
+    </p>
+    {% endfor %}
+  </div>
+  <div class="main">
+    {% for room in rooms %}
+
+    <div>
+      <p>
+        {{ room.name }} <a href="{% url 'room' room.id %}">view</a>
+      </p>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<h2>
+  Add a room
+</h2>
+
+<form action="" method="post">
+
+  {% csrf_token %}
+  <div>
+    <label for="host">Host:</label>
+    <select name="host" id="host">
+      {% for host in hosts %}
+      <option value="{{ host.id }}">
+        {{ host.username }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <label for="topic">Topic:</label>
+    <select name="topic" id="topic">
+      {% for topic in topics %}
+      <option value="{{ topic.id }}">
+        {{ topic.name }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" placeholder="Room name">
+  </div>
+
+  <div>
+    <label for="desc">Desciption:</label>
+    <textarea name="desc" id="desc" rows="5" placeholder="Enter Desciption"></textarea>
+  </div>
+
+
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<h2>
+  {{ room.name}}
+</h2>
+
+<p>
+  {{ room.description }}
+</p>
+
+<a href="{% url 'update-room' room.id %}">Edit</a>
+
+<form action="{% url 'delete' room.id %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+</form>
+
+{% endblock %}

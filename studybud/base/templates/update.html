@@ -1,0 +1,38 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<h2>
+  Update
+  {{ room.name }}
+</h2>
+
+<form action="" method="post">
+
+  {% csrf_token %}
+
+  <div>
+    <label for="topic">Topic:</label>
+    <select name="topic" id="topic">
+      {% for topic in topics %}
+      <option value="{{ topic.id }}">
+        {{ topic.name }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{ room.name }}" id="name">
+  </div>
+
+  <div>
+    <label for="desc">Desciption:</label>
+    <textarea name="desc" id="desc" rows="5">
+    {{ room.description }}</textarea>
+  </div>
+
+
+  <button type="submit">Update</button>
+</form>
+{% endblock %}
