@@ -1,0 +1,40 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+    {{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if page == "login" %}
+<div>
+  <h2>Login Page</h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+
+    <button type="submit">Login</button>
+  </form>
+  <p>Not Registered? <a href="{% url 'register' %}">Sign Up</a> here.</p>
+</div>
+{% else %}
+<div>
+  <h2>Register Page</h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Register</button>
+  </form>
+  <p>Already Registered? <a href="{% url 'login_page' %}">Login</a> here.</p>
+</div>
+{% endif %}
+
+{% endblock %}

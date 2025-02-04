@@ -9,11 +9,13 @@
   {{ room.description }}
 </p>
 
+{% if request.user == room.host %}
 <a href="{% url 'update-room' room.id %}">Edit</a>
 
 <form action="{% url 'delete' room.id %}" method="post">
   {% csrf_token %}
   <button type="submit">Delete</button>
 </form>
+{% endif %}
 
 {% endblock %}

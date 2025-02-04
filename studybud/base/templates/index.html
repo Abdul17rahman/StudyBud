@@ -1,7 +1,11 @@
 {% extends 'layouts/main.html' %}
 
 {% block content %}
-<h1>Welcome to study buddy</h1>
+<h1>Find a study buddy.</h1>
+
+<form action="{% url 'index' %}" method="get">
+  <input type="text" name="q" id="search" placeholder="Search">
+</form>
 
 <a href="{% url 'create-room' %}">Create Room</a>
 
@@ -18,11 +22,21 @@
     {% endfor %}
   </div>
   <div class="main">
+    <h3>
+      {% if room_count < 2 %}
+      {{ room_count }} room available
+      {% else %}
+      {{ room_count }} total rooms available.
+      {% endif %}
+    </h3>
     {% for room in rooms %}
 
     <div>
       <p>
         {{ room.name }} <a href="{% url 'room' room.id %}">view</a>
+      </p>
+      <p>By @
+        {{ room.host }}
       </p>
     </div>
 

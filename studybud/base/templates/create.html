@@ -9,14 +9,14 @@
 
   {% csrf_token %}
   <div>
+    {% if request.user.is_authenticated %}
     <label for="host">Host:</label>
     <select name="host" id="host">
-      {% for host in hosts %}
-      <option value="{{ host.id }}">
-        {{ host.username }}
+      <option value="{{ request.user.id }}">
+        {{ request.user.username }}
       </option>
-      {% endfor %}
     </select>
+    {% endif %}
   </div>
 
   <div>
